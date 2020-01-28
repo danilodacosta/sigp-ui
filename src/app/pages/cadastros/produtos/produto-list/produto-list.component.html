@@ -1,0 +1,53 @@
+<app-bread-crumb page-title="produtos" [items]="[{text: 'Produtos'}]">
+</app-bread-crumb>
+
+<app-panel-container button-link="new" panel-title="Lista de Produtos" button-text="Novo" button-icon="fa-plus">
+
+  <table class="table table-striped table-bordered table-hover table-responsive">
+    <thead class="thead-default">
+      <tr>
+        <th>Código</th>
+        <th>Descrição</th>
+        <th class="text-center">Tipo</th>
+        <th>Conta Contabil</th>
+        <th>Almoxarifado</th>
+        <th class="text-right">Preço de compra</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+
+    <tr *ngFor="let produto of resources">
+
+      <td>
+        <strong>{{produto.id}}</strong>
+      </td>
+      <td>
+        {{produto.descricao}}
+      </td>
+      <td class="text-center">
+        {{produto.tipo}}
+      </td>
+      <td>
+        {{produto.contaContabil}}
+      </td>
+
+      <td>
+        {{produto.almoxarifado}}
+      </td>
+
+      <td class="text-right">
+        {{produto.precoCompra}}
+      </td>
+
+      <td class="text-center">
+        <button title="Editar" [routerLink]="[produto.id, 'edit']" class="m-r-5 btn-acoes">
+          <i class="fa fa-pencil font-14"></i>
+        </button>
+        <button title="Excluir" (click)="deleteResource(produto)" class="m-r-5 btn-acoes">
+          <i class="fa fa-trash font-14"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+</app-panel-container>    

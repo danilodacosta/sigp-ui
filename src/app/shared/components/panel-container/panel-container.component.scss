@@ -1,0 +1,57 @@
+@import "src/styles.scss";
+
+// PROPRIEDADES DO PAINEL
+
+@mixin breakpoint() {
+  @media (max-width: 644px) {
+    font-size: 20px;
+    @content;
+  }
+
+  @media (max-width: 542px) {
+    font-size: 18px;
+    @content;
+  }
+
+  @media (max-width: 510px) {
+    font-size: 15px;
+    @content;
+  }
+}
+
+div.ibox .ibox-head {
+  height: 70px;
+  border-bottom: 1px solid $azul-primario;
+
+  div.ibox-title {
+    font-size: 17px;
+    text-transform: uppercase;
+    color: $azul-primario;
+    @include breakpoint();
+  }
+
+  //BOTÕES DO PAINEL
+  div.ibox-tools {
+    a {
+      color: $cinza-primario;
+      cursor: pointer;
+      margin-left: 20px;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      border-radius: 5px;
+      font-size: 1rem;
+      padding: 0 12px;
+      font-size: 13px;
+
+      &:hover {
+        background: $azul-primario;
+        color: #fff;
+        padding: 12px;
+      }
+
+      .fa {
+        margin-right: 3px;
+      }
+    }
+  }
+}

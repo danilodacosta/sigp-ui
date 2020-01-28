@@ -1,0 +1,43 @@
+<app-bread-crumb page-title="Solicitação Armazém" [items]="[{text: 'Solicitação Armazém'}]">
+</app-bread-crumb>
+
+<app-panel-container button-link="new" panel-title="Lista de Solicitações" button-text="Nova Solicitação" button-icon="fa-plus">
+
+
+<table class="table table-striped table-bordered table-hover table-responsive">
+    <thead class ="thead-default">
+        <tr>
+          <th>Número</th>
+          <th>Solicitante</th>
+          <th>Data de Emissão</th>
+          <th class="text-center">Ações</th>
+        </tr>
+      </thead>
+
+    <tr *ngFor="let solicitacao of resources">
+        <td>
+          <strong>{{solicitacao.numero}}</strong>
+        </td>
+        <td>
+          {{solicitacao.solicitante}}
+        </td>
+        <td>
+            {{solicitacao.dataEmissao}}
+        </td>
+
+        <td class="text-center">
+          <button title="Editar" [routerLink]="[solicitacao.id, 'edit']" class="m-r-5 btn-acoes">
+              <i class="fa fa-pencil font-14"></i>
+          </button>
+          <button  title="Excluir" (click)="deleteResource(solicitacao)" class="m-r-5 btn-acoes">
+              <i class="fa fa-trash font-14"></i>
+          </button>
+        </td>
+      </tr>
+  </table>
+
+
+
+
+
+</app-panel-container>

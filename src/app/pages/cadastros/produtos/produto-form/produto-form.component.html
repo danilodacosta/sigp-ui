@@ -1,0 +1,67 @@
+<app-bread-crumb page-title="produtos" [items]="[{text: 'Produtos', link: '/produtos'} , {text: pageTitle}]">
+</app-bread-crumb>
+
+<app-panel-container button-link="/produtos" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
+
+  <form [formGroup]="resourceForm" (submit)="submitForm()">
+
+    <div class="row">
+      <!-- descricao -->
+      <div class="col-md-6">
+        <app-form-container for="descricao" label="Descrição" [form-control]="resourceForm.get('descricao')">
+          <input type="text" placeholder="Descrição" class="form-control" id="descricao" formControlName="descricao">
+        </app-form-container>
+      </div>
+
+      <!-- unidade -->
+      <div class="col-md-6">
+        <app-form-container for="unidade" label="Unidade" [form-control]="resourceForm.get('unidade')">
+          <input placeholder="Unidade" class="form-control" id="unidade" formControlName="unidade">
+        </app-form-container>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-4">
+        <app-form-container label="Conta Contábil" for="contaContabil"
+          [form-control]="resourceForm.get('contaContabil')">
+          <input type="text" placeholder="Conta Contábil" class="form-control" id="contaContabil"
+            formControlName="contaContabil">
+        </app-form-container>
+      </div>
+
+      <div class="col-md-4">
+        <app-form-container label="Almoxarifado" for="almoxarifado" [form-control]="resourceForm.get('almoxarifado')">
+          <input type="text" 
+                 placeholder="Almoxarifado" 
+                 class="form-control" id="almoxarifado"
+                 formControlName="almoxarifado">
+        </app-form-container>
+      </div>
+
+
+      <!-- ultimo valor de compra -->
+      <div class="col-md-4">
+        <app-form-container for="ultimoPrecoCompra" label="Último preço de compra"
+          [form-control]="resourceForm.get('ultimoPrecoCompra')">
+          <div class="input-group">
+            <div class="input-group-addon">R$</div>
+            <input placeholder="0,00" [imask]="imaskConfig" type="text" class="form-control text-right"
+              id="ultimoPrecoCompra" formControlName="ultimoPrecoCompra">
+          </div>
+        </app-form-container>
+      </div>
+    </div>
+
+    <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <button class="float-right" pButton [disabled]="submittingForm || resourceForm.invalid" type="submit"
+          label="Salvar" icon="pi pi-check"></button>
+      </div>
+    </div>
+  </form>
+
+</app-panel-container>
