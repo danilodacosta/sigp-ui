@@ -47,9 +47,25 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./src/assets/css/bootstrap.min.css",
+              "./src/assets/css/font-awesome/css/font-awesome.min.css",
+              "./src/assets/css/themify-icons/css/themify-icons.css",
+              "./src/assets/css/main.min.css",
+              "./node_modules/toastr/build/toastr.min.css",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/themes/nova-light/theme.css",
+              "./node_modules/primeng/resources/primeng.min.css"
             ],
-            "scripts": []
+            "scripts": [
+			  "./src/assets/js/jquery.min.js",
+              "./src/assets/js/popper.min.js",
+              "./src/assets/js/bootstrap.min.js",
+              "./src/assets/js/metisMenu.min.js",
+              "./src/assets/js/jquery.slimscroll.min.js",
+              "./src/assets/js/app.min.js",
+              "./src/assets/js/backspace-disabled-navigation.js"
+			]
           },
           "configurations": {
             "production": {
