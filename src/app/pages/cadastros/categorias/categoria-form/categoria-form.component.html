@@ -1,0 +1,28 @@
+<app-bread-crumb page-title="categorias" [items]="[{text: 'categorias', link: '/categorias'} , {text: pageTitle}]">
+</app-bread-crumb>
+
+<app-panel-container button-link="/categorias" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
+
+  <form [formGroup]="resourceForm" (submit)="submitForm()">
+
+    <div class="row">
+      <!-- descricao -->
+      <div class="col-12">
+        <app-form-container for="descricao" label="Descrição" [form-control]="resourceForm.get('descricao')">
+          <input type="text" placeholder="Descrição" class="form-control" id="descricao" formControlName="descricao">
+        </app-form-container>
+      </div>
+
+    </div>
+
+  <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <button class="float-right" pButton [disabled]="submittingForm || resourceForm.invalid" type="submit"
+          label="Salvar" icon="pi pi-check"></button>
+      </div>
+    </div>
+  </form>
+
+</app-panel-container>

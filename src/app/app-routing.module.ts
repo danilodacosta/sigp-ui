@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {path: 'produtos', loadChildren: './pages/cadastros/produtos/produtos.module#ProdutosModule'},
+  {path: 'categorias', loadChildren: './pages/cadastros/categorias/categorias.module#CategoriasModule'},
   // tslint:disable-next-line: max-line-length
   {path: 'solicitacao-armazem', loadChildren: './pages/movimentacoes/solicitacao-armazem/solicitacao-armazem.module#SolicitacaoArmazemModule'},
   {path: '', redirectTo: '/', pathMatch: 'full'}
