@@ -1,0 +1,28 @@
+<app-bread-crumb page-title="representantes" [items]="[{text: 'representantes', link: '/representantes'} , {text: pageTitle}]">
+</app-bread-crumb>
+
+<app-panel-container button-link="/representantes" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
+
+  <form [formGroup]="resourceForm" (submit)="submitForm()">
+
+    <div class="row">
+      <!-- nome -->
+      <div class="col-12">
+        <app-form-container for="nome" label="Nome" [form-control]="resourceForm.get('nome')">
+          <input type="text" placeholder="Nome" class="form-control" id="nome" formControlName="nome">
+        </app-form-container>
+      </div>
+
+    </div>
+
+  <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <button class="float-right" pButton [disabled]="submittingForm || resourceForm.invalid" type="submit"
+          label="Salvar" icon="pi pi-check"></button>
+      </div>
+    </div>
+  </form>
+
+</app-panel-container>
