@@ -22,7 +22,9 @@ export class RepresentanteFormComponent extends BaseResourceFormComponent<Repres
   protected buildResourceForm(): void {
      this.resourceForm = this.formBuilder.group({
       id : [null],
-      nome: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(11)]]
+      nome: [null,[Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      endereco :[null, [Validators.required, Validators.maxLength(50)]],
+      telefone: [null, [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
     });
   }
 

@@ -1,0 +1,59 @@
+<app-bread-crumb page-title="comunidades" [items]="[{text: 'comunidades', link: '/comunidades'} , {text: pageTitle}]">
+</app-bread-crumb>
+
+<app-panel-container button-link="/comunidades" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
+
+  <form [formGroup]="resourceForm" (submit)="submitForm()">
+
+    <div class="row">
+      <!-- nome -->
+      <div class="col-12">
+        <app-form-container for="nome" label="Nome" [form-control]="resourceForm.get('nome')">
+          <input type="text" placeholder="Nome" class="form-control" id="nome" formControlName="nome">
+        </app-form-container>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <!-- nome -->
+      <div class="col-6">
+        <app-form-container for="bairro" label="Bairro" [form-control]="resourceForm.get('bairro')">
+          <input type="text" placeholder="Bairro" class="form-control" id="bairro" formControlName="bairro">
+        </app-form-container>
+      </div>
+
+      <div class="col-6">
+        <app-form-container for="distrito" label="Distrito" [form-control]="resourceForm.get('distrito')">
+          <input type="text" placeholder="Distrito" class="form-control" id="distrito" formControlName="distrito">
+        </app-form-container>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-12">
+        <p-dropdown [options]="representantes" formControlName="representante"></p-dropdown>
+      </div>
+
+    <!--<div class="col-md-12">
+      <app-form-container for="representante" label="Representante" [form-control]="resourceForm.get('representanteId')">
+      <select class="form-control" name="representante" id="representante" formControlName="representanteId">
+         <option *ngFor="let representante of representantes" [value]="representante.id">{{representante.nome}}</option>
+      </select>
+      </app-form-container>
+    </div>-->
+    </div>
+
+  <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <button class="float-right" pButton [disabled]="submittingForm || resourceForm.invalid" type="submit"
+          label="Salvar" icon="pi pi-check"></button>
+      </div>
+    </div>
+  </form>
+
+</app-panel-container>

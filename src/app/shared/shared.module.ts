@@ -18,7 +18,7 @@ import {DialogModule} from 'primeng/dialog';
     PanelContainerComponent,
     FormContainerComponent
   ],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, PanelModule, DialogModule ],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, PanelModule, DialogModule],
   exports: [
     // shared Modules
     CommonModule,

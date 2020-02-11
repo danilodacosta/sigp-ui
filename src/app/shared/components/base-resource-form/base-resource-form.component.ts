@@ -95,6 +95,8 @@ protected editionPageTitle(): string {
 protected createResource() {
   const resource: T =  this.jsonDataToResourceFn(this.resourceForm.value);
 
+  debugger;
+
   this.resourceService.create(resource)
   .subscribe(
     resource => this.actionsForSuccess(resource),
