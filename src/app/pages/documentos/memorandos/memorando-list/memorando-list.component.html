@@ -1,0 +1,42 @@
+<app-bread-crumb page-title="Memorandos" [items]="[{text: 'Memorandos'}]">
+</app-bread-crumb>
+
+<app-panel-container button-link="new" panel-title="Lista de Memorandos" button-text="Novo" button-icon="fa-plus">
+
+  <table class="table table-striped table-bordered table-hover table-responsive">
+    <thead class="thead-default">
+      <tr>
+        <th>Número</th>
+        <th>Destinatario</th>
+        <th>Situação</th>
+        <th>Categoria</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+
+    <tr *ngFor="let memorando of resources">
+
+      <td>
+        <strong>{{memorando.numero}}</strong>
+      </td>
+      <td>
+        {{memorando.destinatario}}
+      </td>
+      <td>
+        {{memorando.situacao}}
+      </td>
+      <td>
+        {{memorando.categoria.descricao}}
+      </td>
+      <td class="text-center">
+        <button title="Editar" [routerLink]="[memorando.id, 'edit']" class="m-r-5 btn-acoes">
+          <i class="fa fa-pencil font-14"></i>
+        </button>
+        <button title="Excluir" (click)="deleteResource(memorando)" class="m-r-5 btn-acoes">
+          <i class="fa fa-trash font-14"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+</app-panel-container>

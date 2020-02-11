@@ -7,7 +7,6 @@ export class Comunidade extends BaseResourceModel {
     public nome?: string,
     public bairro?: string,
     public distrito?: string,
-    public representanteId?: number,
     public representante?: Representante,
 
   ) {
@@ -15,7 +14,6 @@ export class Comunidade extends BaseResourceModel {
   }
 
   static fromJson(jsonData: any): Comunidade {
-    debugger;
     return Object.assign(new Comunidade() , jsonData);
   }
 

@@ -33,17 +33,13 @@
 
     <div class="row">
 
-      <div class="col-md-12">
-        <p-dropdown [options]="representantes" formControlName="representante"></p-dropdown>
-      </div>
-
-    <!--<div class="col-md-12">
-      <app-form-container for="representante" label="Representante" [form-control]="resourceForm.get('representanteId')">
-      <select class="form-control" name="representante" id="representante" formControlName="representanteId">
-         <option *ngFor="let representante of representantes" [value]="representante.id">{{representante.nome}}</option>
+    <div class="col-md-12">
+      <app-form-container for="representante" label="Representante" [form-control]="resourceForm.get('representante')">
+      <select class="form-control" name="representante" id="representante" formControlName="representante" [compareWith]="selectComparator">
+         <option *ngFor="let representante of representantes" [ngValue]="representante">{{representante.nome}}</option>
       </select>
       </app-form-container>
-    </div>-->
+    </div>
     </div>
 
   <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>

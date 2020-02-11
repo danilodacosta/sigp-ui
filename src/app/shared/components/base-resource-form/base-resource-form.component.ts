@@ -84,6 +84,14 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   }
 }
 
+protected selectComparator(t1: T, t2: T): boolean {
+  return t1 && t2 ? t1.id === t2.id : t1 === t2;
+}
+
+protected selectEnumComparator(t1: string, t2: string): boolean {
+  return t1 && t2 ? t1 === t2 : false;
+}
+
 protected creationPageTitle(): string {
    return 'Novo';
 }

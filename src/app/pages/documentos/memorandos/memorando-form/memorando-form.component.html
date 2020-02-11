@@ -1,0 +1,63 @@
+<app-bread-crumb page-title="memorandos" [items]="[{text: 'memorandos', link: '/memorandos'} , {text: pageTitle}]">
+</app-bread-crumb>
+
+<app-panel-container button-link="/memorandos" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
+
+  <form [formGroup]="resourceForm" (submit)="submitForm()">
+
+    <div class="row">
+      <!-- destinatario -->
+      <div class="col-12">
+        <app-form-container for="destinatario" label="Destinatario" [form-control]="resourceForm.get('destinatario')">
+          <input type="text" placeholder="Destinatario" class="form-control" id="destinatario" formControlName="destinatario">
+        </app-form-container>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <!-- destinatario -->
+      <div class="col-md-6">
+        <app-form-container for="numero" label="Número" [form-control]="resourceForm.get('numero')">
+          <input type="text" placeholder="Número" class="form-control" id="numero" formControlName="numero">
+        </app-form-container>
+      </div>
+
+      <div class="col-md-6">
+        <app-form-container for="situacao" label="Situação" [form-control]="resourceForm.get('situacao')">
+        <select class="form-control" name="situacao" id="situacao">
+           <option *ngFor="let item of situacao" >{{item}}</option>
+        </select>
+        </app-form-container>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-6">
+        <app-form-container for="solicitante" label="Solicitante" [form-control]="resourceForm.get('solicitante')">
+          <input type="text" placeholder="Solicitante" class="form-control" id="solicitante" formControlName="solicitante">
+        </app-form-container>
+      </div>
+
+    <div class="col-md-6">
+      <app-form-container for="categoria" label="Categoria" [form-control]="resourceForm.get('categoria')">
+      <select class="form-control" name="categoria" id="categoria" formControlName="categoria" [compareWith]="selectComparator">
+         <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{categoria.descricao}}</option>
+      </select>
+      </app-form-container>
+    </div>
+    </div>
+
+  <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+
+    <div class="row">
+      <div class="form-group col-md-12">
+        <button class="float-right" pButton [disabled]="submittingForm || resourceForm.invalid" type="submit"
+          label="Salvar" icon="pi pi-check"></button>
+      </div>
+    </div>
+  </form>
+
+</app-panel-container>

@@ -49,7 +49,6 @@ export class ComunidadeFormComponent extends BaseResourceFormComponent<Comunidad
     return 'Editando Comunidade : ' + comunidadeDescricao;
   }
 
-
   private loadRepresenatantes() {
     this.representanteService.getAll().subscribe(
       representantes => this.representantes = representantes

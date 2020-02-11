@@ -1,13 +1,14 @@
 import { Injectable, Injector } from '@angular/core';
+import { Empresa } from './empresa.model';
+
 import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
-import { Comunidade } from '../../comunidades/shared/comunidade.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ComunidadeService extends BaseResourceService<Comunidade> {
+export class EmpresaService extends BaseResourceService<Empresa> {
 
   constructor(protected injector: Injector) {
-    super('/comunidades', injector, Comunidade.fromJson);
+    super('/empresas', injector, Empresa.fromJson);
   }
 }
