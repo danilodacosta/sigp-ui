@@ -7,6 +7,7 @@ const routes: Routes = [
   {path: 'categorias', loadChildren: './pages/cadastros/categorias/categorias.module#CategoriasModule'},
   {path: 'representantes', loadChildren: './pages/cadastros/representantes/representantes.module#RepresentantesModule'},
   {path: 'empresas', loadChildren: './pages/cadastros/empresas/empresas.module#EmpresasModule'},
+  {path: 'visitantes', loadChildren: './pages/cadastros/visitantes/visitantes.module#VisitantesModule'},
   {path: 'comunidades', loadChildren: './pages/cadastros/comunidades/comunidades.module#ComunidadesModule'},
   {path: 'memorandos', loadChildren: './pages/documentos/memorandos/memorandos.module#MemorandosModule'},
   // tslint:disable-next-line: max-line-length
