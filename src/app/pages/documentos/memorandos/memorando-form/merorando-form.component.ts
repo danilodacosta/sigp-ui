@@ -23,7 +23,6 @@ export class MemorandoFormComponent extends BaseResourceFormComponent<Memorando>
               private categoriaService: CategoriaService,
               protected injector: Injector) {
     super(injector, new Memorando(), memorandoService, Memorando.fromJson);
-    console.log(this.situacao);
   }
 
   ngOnInit() {
@@ -47,7 +46,7 @@ export class MemorandoFormComponent extends BaseResourceFormComponent<Memorando>
   }
 
   protected editionPageTitle(): string {
-    const memorandoDescricao: string  = this.resource.numero.toString() || '' ;
+    const memorandoDescricao: string  = this.resource.numero + '' || '' ;
     return 'Editando Memorando : ' + memorandoDescricao;
   }
 

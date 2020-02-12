@@ -26,8 +26,8 @@
 
       <div class="col-md-6">
         <app-form-container for="situacao" label="Situação" [form-control]="resourceForm.get('situacao')">
-        <select class="form-control" name="situacao" id="situacao">
-           <option *ngFor="let item of situacao" >{{item}}</option>
+        <select class="form-control" name="situacao" id="situacao" formControlName="situacao" [compareWith]="selectEnumComparator">
+           <option *ngFor="let item of situacao | keys" [ngValue]="item.key">{{item.value}}</option>
         </select>
         </app-form-container>
       </div>

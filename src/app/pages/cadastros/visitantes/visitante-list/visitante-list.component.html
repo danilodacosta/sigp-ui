@@ -8,6 +8,7 @@
       <tr>
         <th>Nome</th>
         <th>CPF</th>
+        <th>Tipo</th>
         <th>Bairro</th>
         <th>Celular</th>
         <th class="text-center">Ações</th>
@@ -23,7 +24,10 @@
         {{visitante.cpf}}
       </td>
       <td>
-        {{visitante.bairro}}
+        {{tipoPessoaEnum[visitante.tipo]}}
+      </td>
+      <td>
+        {{visitante.endereco.bairro}}
       </td>
       <td>
         {{visitante.celular}}

@@ -24,9 +24,20 @@ export class VisitanteFormComponent extends BaseResourceFormComponent<Visitante>
       nome: [null, [Validators.required,  Validators.minLength(18), Validators.maxLength(18)]],
       cpf: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       rg: [null, [Validators.required, Validators.maxLength(6)]],
-      logradouro : [null, [Validators.required, Validators.maxLength(50)]],
-      email : [null, [Validators.required, Validators.email]],
-      celular: [null, [Validators.required, Validators.minLength(13), Validators.maxLength(13)]],
+      celular: [null, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+      email: [null, [Validators.required, Validators.email]],
+      tipo: [null, [Validators.required]],
+      endereco: this.formBuilder.group(
+        {
+            logradouro : [null, [Validators.required, Validators.maxLength(50)]],
+            bairro: [null, [Validators.required, Validators.maxLength(20)]],
+            cep:    [null, [Validators.minLength(9), Validators.maxLength(9)]],
+            cidade: [null, [Validators.required, Validators.maxLength(20)]],
+            numero: [null, [Validators.required, Validators.maxLength(50)]],
+            complemento: [null, [Validators.required, Validators.maxLength(100)]],
+            estado: [null, [Validators.required]],
+        }
+    ),
     });
   }
 

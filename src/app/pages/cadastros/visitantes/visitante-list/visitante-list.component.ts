@@ -1,3 +1,4 @@
+import { TipoPessoaEnum } from './../../../../shared/models/enums/tipo-pessoa.enum';
 import { Component } from '@angular/core';
 import { BaseResourceListComponent } from 'src/app/shared/components/base-resource-list/base-resource-list.component';
 import { Visitante } from '../shared/visitante.model';
@@ -9,6 +10,8 @@ import { VisitanteService } from '../shared/visitante.service';
   styleUrls: ['./visitante-list.component.scss']
 })
 export class VisitanteListComponent extends BaseResourceListComponent<Visitante> {
+
+  tipoPessoaEnum = TipoPessoaEnum;
 
   constructor(protected visitanteService: VisitanteService) {
     super(visitanteService);
