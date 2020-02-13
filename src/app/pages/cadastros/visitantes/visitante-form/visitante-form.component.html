@@ -8,7 +8,7 @@
 
     <div class="row">
 
-      <!-- nome -->
+
       <div class="col-12">
         <app-form-container for="nome" label="Nome" [form-control]="resourceForm.get('nome')">
           <input type="text" placeholder="Nome" class="form-control" id="nome" formControlName="nome">
@@ -19,32 +19,78 @@
 
     <div class="row">
 
-
       <div class="col-6">
         <app-form-container for="email" label="E-mail" [form-control]="resourceForm.get('email')">
           <input type="email" placeholder="E-mail" class="form-control" id="email" formControlName="email">
         </app-form-container>
       </div>
 
+      <div class="col-6">
+        <app-form-container for="celular" label="Celular" [form-control]="resourceForm.get('celular')">
+          <input [imask]="{mask: '(00)00000-0000'}" type="text" placeholder="Telefone" class="form-control" id="celular" formControlName="celular">
+        </app-form-container>
+      </div>
+
     </div>
 
-    <div class="row">
+    <div class="row" formGroupName="endereco">
+      <p-panel class="col-12" header="Endereço">
 
-      <div formGroupName="endereco">
+        <div class="row">
 
-          <div class="col-6">
-            <app-form-container for="logradouro" label="Logradouro" [form-control]="resourceForm.get('logradouro')">
-              <input type="text" placeholder="Logradouro" class="form-control" id="logradouro" formControlName="logradouro">
+          <div class="col-md-4">
+            <app-form-container for="cep" label="CEP" [form-control]="resourceForm.get('endereco.cep')">
+            <input type="text" placeholder="CEP" class="form-control" id="cep" formControlName="cep">
             </app-form-container>
           </div>
 
-          <div class="col-6">
-            <app-form-container for="celular" label="Celular" [form-control]="resourceForm.get('celular')">
-              <input [imask]="{mask: '(00)00000-0000'}" type="text" placeholder="Telefone" class="form-control" id="celular" formControlName="celular">
+          <div class="col-md-8">
+            <app-form-container for="logradouro" label="Logradouro" [form-control]="resourceForm.get('endereco.logradouro')">
+            <input type="text" placeholder="Logradouro" class="form-control" id="logradouro" formControlName="logradouro">
             </app-form-container>
           </div>
 
         </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <app-form-container for="numero" label="Número" [form-control]="resourceForm.get('endereco.numero')">
+            <input type="text" placeholder="Número" class="form-control" id="numero" formControlName="numero">
+          </app-form-container>
+          </div>
+
+          <div class="col-md-8">
+            <app-form-container for="complemento" label="Complemento" [form-control]="resourceForm.get('endereco.numero')">
+            <input type="text" placeholder="Complemento" class="form-control" id="complemento" formControlName="complemento">
+            </app-form-container>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <app-form-container for="bairro" label="Bairro" [form-control]="resourceForm.get('endereco.bairro')">
+            <input type="text" placeholder="Bairro" class="form-control" id="bairro" formControlName="bairro">
+            </app-form-container>
+          </div>
+
+          <div class="col-md-4">
+            <app-form-container for="cidade" label="Cidade" [form-control]="resourceForm.get('endereco.cidade')">
+            <input type="text" placeholder="Cidade" class="form-control" id="cidade" formControlName="cidade">
+          </app-form-container>
+          </div>
+
+          <div class="col-md-4">
+            <app-form-container for="estado" label="Estado" [form-control]="resourceForm.get('endereco.estado')">
+            <input type="text" placeholder="Estado" class="form-control" id="estado" formControlName="estado">
+          </app-form-container>
+          </div>
+
+        </div>
+
+      </p-panel>
 
     </div>
 

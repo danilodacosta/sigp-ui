@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Mascaras } from '../../directives/mascaras';
 
 @Component({
@@ -18,10 +18,9 @@ export class FormContainerComponent implements OnInit {
 
   @Input() for: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 
   public get errorMessage(): string | null {
@@ -70,6 +69,5 @@ export class FormContainerComponent implements OnInit {
   hasError(): boolean {
     return this.formControl.invalid && (this.formControl.dirty || this.formControl.touched);
   }
-
 
 }

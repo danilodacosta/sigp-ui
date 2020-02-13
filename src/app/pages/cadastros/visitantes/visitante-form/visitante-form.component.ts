@@ -28,10 +28,11 @@ export class VisitanteFormComponent extends BaseResourceFormComponent<Visitante>
       email: [null, [Validators.required, Validators.email]],
       tipo: [null, [Validators.required]],
       endereco: this.formBuilder.group(
+
         {
             logradouro : [null, [Validators.required, Validators.maxLength(50)]],
             bairro: [null, [Validators.required, Validators.maxLength(20)]],
-            cep:    [null, [Validators.minLength(9), Validators.maxLength(9)]],
+            cep:    [null, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
             cidade: [null, [Validators.required, Validators.maxLength(20)]],
             numero: [null, [Validators.required, Validators.maxLength(50)]],
             complemento: [null, [Validators.required, Validators.maxLength(100)]],
@@ -39,6 +40,9 @@ export class VisitanteFormComponent extends BaseResourceFormComponent<Visitante>
         }
     ),
     });
+
+
+    debugger;
   }
 
   protected creationPageTitle(): string {
