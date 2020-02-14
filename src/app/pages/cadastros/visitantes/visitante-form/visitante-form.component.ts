@@ -1,3 +1,4 @@
+import { CorreiosService } from './../../../../shared/services/correios.service';
 import { Component, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 
@@ -17,16 +18,16 @@ export class VisitanteFormComponent extends BaseResourceFormComponent<Visitante>
 
   isConsultandoCep = false;
 
-  constructor(protected visitanteService: VisitanteService, protected injector: Injector) {
+  constructor(protected visitanteService: VisitanteService, protected injector: Injector, private correiosService: CorreiosService) {
     super(injector, new Visitante(), visitanteService, Visitante.fromJson);
   }
 
   protected buildResourceForm(): void {
      this.resourceForm = this.formBuilder.group({
       id : [null],
-      nome: [null, [Validators.required,  Validators.minLength(18), Validators.maxLength(18)]],
-      cpf: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      rg: [null, [Validators.required, Validators.maxLength(6)]],
+      nome: [null, [Validators.required, Validators.maxLength(18)]],
+      cpf: [null, [Validators.required,  Validators.minLength(11), Validators.maxLength(50)]],
+      rg: [null, [Validators.required,   Validators.maxLength(6)]],
       celular: [null, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
       email: [null, [Validators.required, Validators.email]],
       tipo: [null, [Validators.required]],
@@ -52,8 +53,26 @@ export class VisitanteFormComponent extends BaseResourceFormComponent<Visitante>
     if (value.length < 9) {
        return;
     }
+
     value = value.replace('-', '');
-    // this.isConsultandoCep = true;
+
+    this.isConsultandoCep = true;
+
+    this.correiosService.buscarCep(value).subscribe(enderecoWeb => {
+
+      this.isConsultandoCep = false;
+
+      this.resourceForm.get('endereco.bairro').setValue(enderecoWeb.bairro);
+      this.resourceForm.get('endereco.cidade').setValue(enderecoWeb.localidade);
+      this.resourceForm.get('endereco.complemento').setValue(enderecoWeb.complemento);
+      this.resourceForm.get('endereco.logradouro').setValue(enderecoWeb.logradouro);
+      this.resourceForm.get('endereco.estado').setValue(enderecoWeb.uf);
+
+  },
+  error => {
+    this.isConsultandoCep = false;
+  });
+
   }
 
   protected creationPageTitle(): string {
