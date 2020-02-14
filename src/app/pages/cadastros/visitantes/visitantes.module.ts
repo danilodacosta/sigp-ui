@@ -8,13 +8,16 @@ import { VisitanteListComponent } from './visitante-list/visitante-list.componen
 import {IMaskModule} from 'angular-imask';
 import {ButtonModule} from 'primeng/button';
 
+import {ProgressBarModule} from 'primeng/progressbar';
+
 @NgModule({
   declarations: [VisitanteFormComponent, VisitanteListComponent],
   imports: [
     SharedModule,
     VisitantesRoutingModule,
     IMaskModule,
-    ButtonModule
+    ButtonModule,
+    ProgressBarModule
   ]
 })
 export class VisitantesModule { }

@@ -33,15 +33,15 @@
 
     </div>
 
+
     <div class="row" formGroupName="endereco">
       <p-panel class="col-12" header="Endereço">
-
+        <p-progressBar *ngIf="isConsultandoCep" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
         <div class="row">
-
           <div class="col-md-4">
             <app-form-container for="cep" label="CEP" [form-control]="resourceForm.get('endereco.cep')">
-            <input type="text" placeholder="CEP" class="form-control" id="cep" formControlName="cep">
-            </app-form-container>
+            <input [imask]="{mask: '00000-000'}" (change)="changeCep($event.target.value)" type="text" placeholder="CEP" class="form-control" id="cep" formControlName="cep">
+          </app-form-container>
           </div>
 
           <div class="col-md-8">
@@ -61,7 +61,7 @@
           </div>
 
           <div class="col-md-8">
-            <app-form-container for="complemento" label="Complemento" [form-control]="resourceForm.get('endereco.numero')">
+            <app-form-container for="complemento" label="Complemento" [form-control]="resourceForm.get('endereco.complemento')">
             <input type="text" placeholder="Complemento" class="form-control" id="complemento" formControlName="complemento">
             </app-form-container>
           </div>
@@ -98,7 +98,7 @@
 
     <div class="row">
       <div class="form-group col-md-12">
-        <button class="float-right" pButton [disabled]="submittingForm || resourceForm.invalid" type="submit"
+        <button class="m-top float-right" pButton [disabled]="submittingForm || resourceForm.invalid" type="submit"
           label="Salvar" icon="pi pi-check"></button>
       </div>
     </div>

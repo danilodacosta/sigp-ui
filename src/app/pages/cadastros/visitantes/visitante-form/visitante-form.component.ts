@@ -14,6 +14,9 @@ import { VisitanteService } from '../shared/visitante.service';
 })
 export class VisitanteFormComponent extends BaseResourceFormComponent<Visitante> {
 
+
+  isConsultandoCep = false;
+
   constructor(protected visitanteService: VisitanteService, protected injector: Injector) {
     super(injector, new Visitante(), visitanteService, Visitante.fromJson);
   }
@@ -41,8 +44,16 @@ export class VisitanteFormComponent extends BaseResourceFormComponent<Visitante>
     ),
     });
 
+  }
 
-    debugger;
+
+  public changeCep(value: any) {
+
+    if (value.length < 9) {
+       return;
+    }
+    value = value.replace('-', '');
+    // this.isConsultandoCep = true;
   }
 
   protected creationPageTitle(): string {
