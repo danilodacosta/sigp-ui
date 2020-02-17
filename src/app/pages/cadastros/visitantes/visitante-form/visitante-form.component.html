@@ -1,9 +1,9 @@
-<app-bread-crumb page-title="empresas" [items]="[{text: 'empresas', link: '/empresas'} , {text: pageTitle}]">
+<app-bread-crumb page-title="visitantes" [items]="[{text: 'visitantes', link: '/visitantes'} , {text: pageTitle}]">
 </app-bread-crumb>
 
 
-<app-panel-container button-link="/empresas" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
-
+<app-panel-container button-link="/visitantes" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
+  <p-progressBar *ngIf="isLoadingResources" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
   <form [formGroup]="resourceForm" (submit)="submitForm()">
 
     <div class="row">
@@ -20,6 +20,23 @@
     <div class="row">
 
       <div class="col-6">
+        <app-form-container for="cpf" label="CPF" [form-control]="resourceForm.get('cpf')">
+          <input [imask]="{mask: '000.000.000-00'}" type="text" placeholder="CPF" class="form-control" id="cpf" formControlName="cpf">
+        </app-form-container>
+      </div>
+
+      <div class="col-6">
+        <app-form-container for="rg" label="RG" [form-control]="resourceForm.get('rg')">
+          <input [imask]="{mask: '0000000'}" type="text" placeholder="RG" class="form-control" id="rg" formControlName="rg">
+        </app-form-container>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-6">
         <app-form-container for="email" label="E-mail" [form-control]="resourceForm.get('email')">
           <input type="email" placeholder="E-mail" class="form-control" id="email" formControlName="email">
         </app-form-container>
@@ -28,6 +45,26 @@
       <div class="col-6">
         <app-form-container for="celular" label="Celular" [form-control]="resourceForm.get('celular')">
           <input [imask]="{mask: '(00)00000-0000'}" type="text" placeholder="Telefone" class="form-control" id="celular" formControlName="celular">
+        </app-form-container>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <app-form-container for="sexo" label="Sexo" [form-control]="resourceForm.get('sexo')">
+        <select class="form-control" name="sexo" id="sexo" formControlName="sexo" [compareWith]="selectEnumComparator">
+           <option *ngFor="let item of sexoEnum | keys" [ngValue]="item.key">{{item.value}}</option>
+        </select>
+        </app-form-container>
+      </div>
+
+      <div class="col-md-6">
+        <app-form-container for="tipo" label="Tipo de Pessoa" [form-control]="resourceForm.get('tipo')">
+        <select class="form-control" name="tipo" id="tipo" formControlName="tipo" [compareWith]="selectEnumComparator">
+           <option *ngFor="let item of tipoPessoa | keys" [ngValue]="item.key">{{item.value}}</option>
+        </select>
         </app-form-container>
       </div>
 
@@ -84,14 +121,13 @@
 
           <div class="col-md-4">
             <app-form-container for="estado" label="Estado" [form-control]="resourceForm.get('endereco.estado')">
-            <input type="text" placeholder="Estado" class="form-control" id="estado" formControlName="estado">
-          </app-form-container>
+              <select class="form-control" name="estado" id="estado" formControlName="estado" [compareWith]="selectEnumComparator">
+                <option *ngFor="let item of estados | keys" [ngValue]="item.key">{{item.value}}</option>
+             </select>
+            </app-form-container>
           </div>
-
         </div>
-
       </p-panel>
-
     </div>
 
   <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
