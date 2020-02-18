@@ -19,6 +19,8 @@ export class PanelContainerComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
   @Input('button-link') buttonLink: string;
 
+  @Input() isLoading = false;
+
   constructor() {}
 
   ngOnInit() {

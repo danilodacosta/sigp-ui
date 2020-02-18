@@ -1,8 +1,7 @@
 <app-bread-crumb page-title="Visitantes" [items]="[{text: 'Visitantes'}]">
 </app-bread-crumb>
 
-<app-panel-container button-link="new" panel-title="Lista de Visitantes" button-text="Novo" button-icon="fa-plus">
-  <p-progressBar *ngIf="isLoadingResources" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+<app-panel-container [isLoading]="loadingResources" button-link="new" panel-title="Lista de Visitantes" button-text="Novo" button-icon="fa-plus">
   <table class="table table-striped table-bordered table-hover table-responsive">
     <thead class="thead-default">
       <tr>

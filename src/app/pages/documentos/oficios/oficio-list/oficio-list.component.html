@@ -1,0 +1,42 @@
+<app-bread-crumb page-title="Oficios" [items]="[{text: 'Oficios'}]">
+</app-bread-crumb>
+
+<app-panel-container [isLoading]="loadingResources" button-link="new" panel-title="Lista de Oficios" button-text="Novo" button-icon="fa-plus">
+
+  <table class="table table-striped table-bordered table-hover table-responsive">
+    <thead class="thead-default">
+      <tr>
+        <th>Assunto</th>
+        <th>Data</th>
+        <th>Destino</th>
+        <th>Situação</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+
+    <tr *ngFor="let oficio of resources">
+
+      <td>
+        <strong>{{oficio.assunto}}</strong>
+      </td>
+      <td>
+        {{oficio.data | date: 'dd/MM/yyyy'}}
+      </td>
+      <td>
+        {{situacaoEnum[oficio.destino]}}
+      </td>
+      <td>
+        {{situacaoEnum[oficio.situacao]}}
+      </td>
+      <td class="text-center">
+        <button title="Editar" [routerLink]="[oficio.id, 'edit']" class="m-r-5 btn-acoes">
+          <i class="fa fa-pencil font-14"></i>
+        </button>
+        <button title="Excluir" (click)="deleteResource(oficio)" class="m-r-5 btn-acoes">
+          <i class="fa fa-trash font-14"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+</app-panel-container>

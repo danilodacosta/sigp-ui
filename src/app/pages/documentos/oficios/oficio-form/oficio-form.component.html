@@ -1,26 +1,24 @@
-<app-bread-crumb page-title="memorandos" [items]="[{text: 'memorandos', link: '/memorandos'} , {text: pageTitle}]">
+<app-bread-crumb page-title="oficios" [items]="[{text: 'oficios', link: '/oficios'} , {text: pageTitle}]">
 </app-bread-crumb>
 
-<app-panel-container [isLoading]="loadingResources" button-link="/memorandos" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
+<app-panel-container [isLoading]="loadingResources" button-link="/oficios" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
 
   <form [formGroup]="resourceForm" (submit)="submitForm()">
 
     <div class="row">
       <!-- destinatario -->
-      <div class="col-12">
-        <app-form-container for="destinatario" label="Destinatario" [form-control]="resourceForm.get('destinatario')">
-          <input type="text" placeholder="Destinatario" class="form-control" id="destinatario" formControlName="destinatario">
+      <div class="col-md-6">
+        <app-form-container for="assunto" label="Assunto" [form-control]="resourceForm.get('assunto')">
+          <input type="text" placeholder="Assunto" class="form-control" id="assunto" formControlName="assunto">
         </app-form-container>
       </div>
 
-    </div>
-
-
-    <div class="row">
-      <!-- destinatario -->
       <div class="col-md-6">
-        <app-form-container for="numero" label="Número" [form-control]="resourceForm.get('numero')">
-          <input type="text" placeholder="Número" class="form-control" id="numero" formControlName="numero">
+
+        <app-form-container for="data" label="Data" [form-control]="resourceForm.get('data')">
+          <p-calendar id="data" formControlName="data" inputStyleClass="form-control" dataType="string"
+             dateFormat="dd/mm/yy" [locale]="ptBR" [showButtonBar]="true">
+          </p-calendar>
         </app-form-container>
       </div>
 
@@ -41,13 +39,14 @@
         </app-form-container>
       </div>
 
-    <div class="col-md-6">
-      <app-form-container for="categoria" label="Categoria" [form-control]="resourceForm.get('categoria')">
-      <select class="form-control" name="categoria" id="categoria" formControlName="categoria" [compareWith]="selectComparator">
-         <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{categoria.descricao}}</option>
-      </select>
-      </app-form-container>
     </div>
+
+    <div class="row">
+      <div class="col-12">
+        <app-form-container for="resumo" label="Resumo" [form-control]="resourceForm.get('resumo')">
+          <input type="text" placeholder="Resumo" class="form-control" id="resumo" formControlName="resumo">
+        </app-form-container>
+      </div>
     </div>
 
   <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>

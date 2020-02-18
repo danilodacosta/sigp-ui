@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: 'visitantes', loadChildren: './pages/cadastros/visitantes/visitantes.module#VisitantesModule'},
   {path: 'comunidades', loadChildren: './pages/cadastros/comunidades/comunidades.module#ComunidadesModule'},
   {path: 'memorandos', loadChildren: './pages/documentos/memorandos/memorandos.module#MemorandosModule'},
+  {path: 'oficios', loadChildren: './pages/documentos/oficios/oficios.module#OficiosModule'},
   // tslint:disable-next-line: max-line-length
   {path: 'solicitacao-armazem', loadChildren: './pages/movimentacoes/solicitacao-armazem/solicitacao-armazem.module#SolicitacaoArmazemModule'},
   {path: '', redirectTo: '/', pathMatch: 'full'}

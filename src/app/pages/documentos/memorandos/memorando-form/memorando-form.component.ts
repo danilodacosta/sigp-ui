@@ -1,6 +1,6 @@
-import { TipoSituacaoEnum } from './../../../../shared/models/enums/tipo-situacao.enum';
-import { CategoriaService } from './../../../cadastros/categorias/shared/categoria.service';
-import { Categoria } from './../../../cadastros/categorias/shared/categoria.model';
+import { TipoSituacaoEnum } from '../../../../shared/models/enums/tipo-situacao.enum';
+import { CategoriaService } from '../../../cadastros/categorias/shared/categoria.service';
+import { Categoria } from '../../../cadastros/categorias/shared/categoria.model';
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 

@@ -9,6 +9,7 @@
       </div>
     </div>
     <div class="ibox-body">
+      <p-progressBar *ngIf="isLoading" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
       <ng-content></ng-content>
     </div>
   </div>

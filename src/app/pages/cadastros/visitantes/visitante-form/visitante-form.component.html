@@ -2,12 +2,11 @@
 </app-bread-crumb>
 
 
-<app-panel-container button-link="/visitantes" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
-  <p-progressBar *ngIf="isLoadingResources" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+<app-panel-container [isLoading]="loadingResources" button-link="/visitantes" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
+
   <form [formGroup]="resourceForm" (submit)="submitForm()">
 
     <div class="row">
-
 
       <div class="col-12">
         <app-form-container for="nome" label="Nome" [form-control]="resourceForm.get('nome')">
@@ -67,6 +66,7 @@
         </select>
         </app-form-container>
       </div>
+
 
     </div>
 

@@ -10,10 +10,17 @@ import { FormContainerComponent } from './components/form-container/form-contain
 // PIPES
 import { KeysPipe } from './pipes/keys.pipe';
 
+// IMASK
+import {IMaskModule} from 'angular-imask';
+
 // PRIME NG
 import {PanelModule} from 'primeng/panel';
 import {DialogModule} from 'primeng/dialog';
 import {FieldsetModule} from 'primeng/fieldset';
+import {ProgressBarModule} from 'primeng/progressbar';
+import {ButtonModule} from 'primeng/button';
+
+
 
 @NgModule({
   declarations: [
@@ -23,13 +30,25 @@ import {FieldsetModule} from 'primeng/fieldset';
     FormContainerComponent,
     KeysPipe
   ],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, PanelModule, DialogModule, FieldsetModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    PanelModule,
+    DialogModule,
+    FieldsetModule,
+    ProgressBarModule,
+    ButtonModule,
+    IMaskModule
+  ],
   exports: [
     // shared Modules
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
     FieldsetModule,
+    ProgressBarModule,
+    ButtonModule,
 
     // shared component
     BreadCrumbComponent,
@@ -39,6 +58,9 @@ import {FieldsetModule} from 'primeng/fieldset';
 
     // pipes
     KeysPipe,
+
+    // imask
+    IMaskModule,
 
     // prime ng components
     PanelModule,

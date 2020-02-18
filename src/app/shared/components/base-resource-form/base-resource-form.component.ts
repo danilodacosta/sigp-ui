@@ -16,7 +16,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   serverErrorMessages: string[] = null;
   submittingForm = false;
 
-  protected isLoadingResources = false;
+  protected loadingResources = false;
 
   protected route: ActivatedRoute;
   protected router: Router;
@@ -64,18 +64,18 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
   protected loadResource() {
     if (this.currentAction === 'edit') {
-        this.isLoadingResources = true;
+        this.loadingResources = true;
         this.route.paramMap.pipe(
           switchMap(params => this.resourceService.getById(+params.get('id')))
       )
       .subscribe(
         (resource) => {
-         this.isLoadingResources = false;
+         this.loadingResources = false;
          this.resource = resource;
          this.resourceForm.patchValue(resource); // binds loaded resource data to resource forms. setando valores retonados
         },
         (error) => {
-          this.isLoadingResources = false;
+          this.loadingResources = false;
           toastr.error('Ocorreu um erro no servidor, tente novamente mais tarde');
         }
       );
@@ -108,16 +108,16 @@ protected editionPageTitle(): string {
 
 protected createResource() {
   const resource: T =  this.jsonDataToResourceFn(this.resourceForm.value);
-  this.isLoadingResources = true;
+  this.loadingResources = true;
   this.resourceService.create(resource)
   .subscribe(
     // tslint:disable-next-line: no-shadowed-variable
     (resource) => {
-      this.isLoadingResources = false;
+      this.loadingResources = false;
       this.actionsForSuccess(resource);
     },
     (error) => {
-      this.isLoadingResources = false;
+      this.loadingResources = false;
       this.actionsForError(error);
     }
   );
@@ -125,16 +125,16 @@ protected createResource() {
 
 protected updateResource() {
   const resource: T =  this.jsonDataToResourceFn(this.resourceForm.value);
-  this.isLoadingResources = true;
+  this.loadingResources = true;
   this.resourceService.update(resource)
   .subscribe(
     (resource) => {
-      this.isLoadingResources = false;
+      this.loadingResources = false;
       this.actionsForSuccess(resource);
     },
     (error) => {
       this.actionsForError(error);
-      this.isLoadingResources = false;
+      this.loadingResources = false;
     }
   );
 }
