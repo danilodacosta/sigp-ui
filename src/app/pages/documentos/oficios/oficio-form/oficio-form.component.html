@@ -7,22 +7,20 @@
 
     <div class="row">
       <!-- destinatario -->
-      <div class="col-md-6">
+      <div class="col-md-4">
         <app-form-container for="assunto" label="Assunto" [form-control]="resourceForm.get('assunto')">
           <input type="text" placeholder="Assunto" class="form-control" id="assunto" formControlName="assunto">
         </app-form-container>
       </div>
 
-      <div class="col-md-6">
-
-        <app-form-container for="data" label="Data" [form-control]="resourceForm.get('data')">
-          <p-calendar id="data" formControlName="data" inputStyleClass="form-control" dataType="string"
-             dateFormat="dd/mm/yy" [locale]="ptBR" [showButtonBar]="true">
+      <div class="col-md-4 ui-fluid">
+       <app-form-container for="data" label="Data" [form-control]="resourceForm.get('data')">
+          <p-calendar  dateFormat="dd/mm/yyyy" id="data" formControlName="data" inputStyleClass="form-control" dataType="string" [locale]="ptBR" [showButtonBar]="true">
           </p-calendar>
         </app-form-container>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-4">
         <app-form-container for="situacao" label="Situação" [form-control]="resourceForm.get('situacao')">
         <select class="form-control" name="situacao" id="situacao" formControlName="situacao" [compareWith]="selectEnumComparator">
            <option *ngFor="let item of situacao | keys" [ngValue]="item.key">{{item.value}}</option>
@@ -34,8 +32,8 @@
     <div class="row">
 
       <div class="col-6">
-        <app-form-container for="solicitante" label="Solicitante" [form-control]="resourceForm.get('solicitante')">
-          <input type="text" placeholder="Solicitante" class="form-control" id="solicitante" formControlName="solicitante">
+        <app-form-container for="responsavel" label="Responsavel" [form-control]="resourceForm.get('responsavel')">
+          <input type="text" placeholder="Responsavel" class="form-control" id="responsavel" formControlName="responsavel">
         </app-form-container>
       </div>
 
@@ -44,7 +42,7 @@
     <div class="row">
       <div class="col-12">
         <app-form-container for="resumo" label="Resumo" [form-control]="resourceForm.get('resumo')">
-          <input type="text" placeholder="Resumo" class="form-control" id="resumo" formControlName="resumo">
+          <textarea class="form-control" id="resumo" placeholder="Resumo" formControlName="resumo" rows="3"></textarea>
         </app-form-container>
       </div>
     </div>
