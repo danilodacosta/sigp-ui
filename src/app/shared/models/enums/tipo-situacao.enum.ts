@@ -1,7 +1,8 @@
 export enum TipoSituacaoEnum {
-PENDENTE   = 'Pendente',
-DEFERIDA   = 'Deferida',
-INDEFERIDA = 'Indeferida',
-ATENDIDO   = 'Atendido',
-PROCESSADO = 'Processado'
+    ATENDIDO   = 'Atendido',
+    DEFERIDO   = 'Deferido',
+    DESPACHADO   = 'Despachado',
+    PENDENTE   = 'Pendente',
+    INDEFERIDO = 'Indeferido',
+    PROCESSADO = 'Processado'
 }

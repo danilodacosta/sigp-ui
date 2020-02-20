@@ -13,12 +13,12 @@
         </app-form-container>
       </div>
 
-      <div class="col-md-4 ui-fluid">
-       <app-form-container for="data" label="Data" [form-control]="resourceForm.get('data')">
-          <p-calendar  dateFormat="dd/mm/yyyy" id="data" formControlName="data" inputStyleClass="form-control" dataType="string" [locale]="ptBR" [showButtonBar]="true">
-          </p-calendar>
-        </app-form-container>
-      </div>
+      <div class="col-md-4">
+        <app-form-container for="sequencia" label="Sequencia" [form-control]="resourceForm.get('sequencia')">
+          <input type="text" placeholder="Sequencia" class="form-control" id="sequencia" formControlName="sequencia">
+         </app-form-container>
+       </div>
+
 
       <div class="col-md-4">
         <app-form-container for="situacao" label="Situação" [form-control]="resourceForm.get('situacao')">
@@ -29,20 +29,36 @@
       </div>
     </div>
 
-    <div class="row">
+     <div class="row">
 
-      <div class="col-6">
-        <app-form-container for="responsavel" label="Responsavel" [form-control]="resourceForm.get('responsavel')">
-          <input type="text" placeholder="Responsavel" class="form-control" id="responsavel" formControlName="responsavel">
-        </app-form-container>
+      <div class="col-md-4">
+        <app-form-container for="destino" label="Destino" [form-control]="resourceForm.get('destino')">
+          <input type="text" placeholder="Destino" class="form-control" id="destino" formControlName="destino">
+         </app-form-container>
+
       </div>
 
-    </div>
+       <div class="col-md-4">
+        <app-form-container for="responsavel" label="Responsavel" [form-control]="resourceForm.get('responsavel')">
+          <input type="text" placeholder="Responsavel" class="form-control" id="responsavel" formControlName="responsavel">
+         </app-form-container>
+
+      </div>
+
+      <div class="col-md-4 ui-fluid">
+        <app-form-container for="data" label="Data" [form-control]="resourceForm.get('data')">
+           <p-calendar [dateFormat]="'dd/mm/yy'" id="data" formControlName="data" inputStyleClass="form-control" dataType="date" [locale]="ptBR" [showButtonBar]="true">
+           </p-calendar>
+         </app-form-container>
+       </div>
+
+     </div>
+
 
     <div class="row">
       <div class="col-12">
         <app-form-container for="resumo" label="Resumo" [form-control]="resourceForm.get('resumo')">
-          <textarea class="form-control" id="resumo" placeholder="Resumo" formControlName="resumo" rows="3"></textarea>
+          <textarea class="form-control" id="resumo" placeholder="Resumo" formControlName="resumo" rows="5"></textarea>
         </app-form-container>
       </div>
     </div>

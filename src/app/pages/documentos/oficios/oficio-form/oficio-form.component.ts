@@ -7,6 +7,8 @@ import { BaseResourceFormComponent } from 'src/app/shared/components/base-resour
 import { Oficio } from '../shared/oficio.model';
 import { OficioService } from '../shared/oficio.service';
 
+import * as moment from 'moment'
+
 @Component({
   selector: 'app-oficio-form',
   templateUrl: './oficio-form.component.html',
@@ -37,9 +39,6 @@ export class OficioFormComponent extends BaseResourceFormComponent<Oficio> imple
     super(injector, new Oficio(), oficioService, Oficio.fromJson);
   }
 
-  ngOnInit() {
-    super.ngOnInit();
-  }
 
   protected buildResourceForm(): void {
     this.resourceForm = this.formBuilder.group({
@@ -54,6 +53,13 @@ export class OficioFormComponent extends BaseResourceFormComponent<Oficio> imple
    });
  }
 
+  protected preSetItem() {
+    if (this.resource.data) {
+       const newDate = new Date(this.resource.data);
+       newDate.setDate(newDate.getDate() + 1);
+       this.resource.data = newDate;
+    }
+ }
 
   protected creationPageTitle(): string {
     return 'Cadastro de Novo Oficio';

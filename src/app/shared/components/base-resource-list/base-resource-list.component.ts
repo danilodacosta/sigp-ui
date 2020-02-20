@@ -19,7 +19,7 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
         this.resources = resources;
       }),
       (error: any) => {
-        alert('Error ao carregar listagem');
+        toastr.error('Ocorreu um erro ao carregar recurso.');
         this.loadingResources = false;
     });
     }
