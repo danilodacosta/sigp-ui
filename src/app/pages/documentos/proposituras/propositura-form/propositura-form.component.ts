@@ -33,11 +33,16 @@ export class ProposituraFormComponent extends BaseResourceFormComponent<Proposit
   protected buildResourceForm(): void {
      this.resourceForm = this.formBuilder.group({
       id : [null],
-      destinatario: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
-      numero: [null, [Validators.required]],
-      situacao : [null, [Validators.required]],
-      solicitante: [null, [Validators.required, Validators.maxLength(40)]],
-      categoria: [null, [Validators.required]],
+      assunto: [null, [Validators.required, Validators.maxLength(255)]],
+      auditoria: [null, [Validators.required, Validators.maxLength(30)]],
+      bairro: [null, [Validators.required, Validators.maxLength(20)]],
+      protocolo: [null, [Validators.required, Validators.maxLength(30)]],
+      resumo : [null, [Validators.required, Validators.maxLength(100)]],
+      rua: [null, [Validators.required, Validators.maxLength(50)]],
+      situacao: [null, [Validators.required]],
+      solicitante: [null, [Validators.required, Validators.maxLength(50)]],
+      tipo: [null, [Validators.required]],
+      categoria: [null, [Validators.required]]
     });
   }
 
