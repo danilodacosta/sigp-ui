@@ -7,8 +7,6 @@ import { BaseResourceFormComponent } from 'src/app/shared/components/base-resour
 import { Oficio } from '../shared/oficio.model';
 import { OficioService } from '../shared/oficio.service';
 
-import * as moment from 'moment'
-
 @Component({
   selector: 'app-oficio-form',
   templateUrl: './oficio-form.component.html',
@@ -17,7 +15,6 @@ import * as moment from 'moment'
 export class OficioFormComponent extends BaseResourceFormComponent<Oficio> implements OnInit  {
 
   situacao = TipoSituacaoEnum;
-
 
   ptBR = {
     firstDayOfWeek: 0,
@@ -53,7 +50,7 @@ export class OficioFormComponent extends BaseResourceFormComponent<Oficio> imple
    });
  }
 
-  protected preSetItem() {
+  protected executaPreSetItem() {
     if (this.resource.data) {
        const newDate = new Date(this.resource.data);
        newDate.setDate(newDate.getDate() + 1);

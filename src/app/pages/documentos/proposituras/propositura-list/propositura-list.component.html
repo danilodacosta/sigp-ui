@@ -1,0 +1,42 @@
+<app-bread-crumb page-title="Proposituras" [items]="[{text: 'Proposituras'}]">
+</app-bread-crumb>
+
+<app-panel-container [isLoading]="loadingResources" button-link="new" panel-title="Lista de Proposituras" button-text="Novo" button-icon="fa-plus">
+
+  <table class="table table-striped table-bordered table-hover table-responsive">
+    <thead class="thead-default">
+      <tr>
+        <th>Número</th>
+        <th>Destinatario</th>
+        <th>Situação</th>
+        <th>Categoria</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+
+    <tr *ngFor="let propositura of resources">
+
+      <td>
+        <strong>{{propositura.numero}}</strong>
+      </td>
+      <td>
+        {{propositura.destinatario}}
+      </td>
+      <td>
+        {{situacaoEnum[propositura.situacao]}}
+      </td>
+      <td>
+        {{propositura.categoria.descricao}}
+      </td>
+      <td class="text-center">
+        <button title="Editar" [routerLink]="[propositura.id, 'edit']" class="m-r-5 btn-acoes">
+          <i class="fa fa-pencil font-14"></i>
+        </button>
+        <button title="Excluir" (click)="deleteResource(propositura)" class="m-r-5 btn-acoes">
+          <i class="fa fa-trash font-14"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+</app-panel-container>

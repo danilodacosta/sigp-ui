@@ -72,8 +72,9 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
         (resource) => {
          this.loadingResources = false;
          this.resource = resource;
-         this.preSetItem();
+         this.executaPreSetItem();
          this.resourceForm.patchValue(resource); // binds loaded resource data to resource forms. setando valores retonados
+         this.executaPosSetItem();
         },
         (error) => {
           this.loadingResources = false;
@@ -83,7 +84,8 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     }
   }
 
-  protected preSetItem() {}
+  protected executaPreSetItem() {}
+  protected executaPosSetItem() {}
 
   protected setPageTitle() {
   if (this.currentAction === 'new') {
