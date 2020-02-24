@@ -1,8 +1,8 @@
-<app-bread-crumb page-title="visitantes" [items]="[{text: 'Visitantes', link: '/visitantes', icon: 'fa-edit'} , {text: pageTitle}]">
+<app-bread-crumb page-title="atendimentos" [items]="[{text: 'Atendimentos', link: '/atendimentos', icon: 'fa-edit'} , {text: pageTitle}]">
 </app-bread-crumb>
 
 
-<app-panel-container [isLoading]="loadingResources" button-link="/visitantes" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
+<app-panel-container [isLoading]="loadingResources" button-link="/atendimentos" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
 
   <form [formGroup]="resourceForm" (submit)="submitForm()">
 

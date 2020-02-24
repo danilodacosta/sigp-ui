@@ -34,7 +34,7 @@ export class ProposituraFormComponent extends BaseResourceFormComponent<Proposit
      this.resourceForm = this.formBuilder.group({
       id : [null],
       assunto: [null, [Validators.required, Validators.maxLength(255)]],
-      auditoria: [null, [Validators.required, Validators.maxLength(30)]],
+      autoria: [null, [Validators.required, Validators.maxLength(30)]],
       bairro: [null, [Validators.required, Validators.maxLength(20)]],
       protocolo: [null, [Validators.required, Validators.maxLength(30)]],
       resumo : [null, [Validators.required, Validators.maxLength(100)]],
@@ -51,7 +51,7 @@ export class ProposituraFormComponent extends BaseResourceFormComponent<Proposit
   }
 
   protected editionPageTitle(): string {
-    const proposituraDescricao: string  = this.resource.numero + '' || '' ;
+    const proposituraDescricao: string  = this.resource.assunto + '' || '' ;
     return 'Editando Propositura : ' + proposituraDescricao;
   }
 

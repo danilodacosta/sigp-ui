@@ -1,0 +1,50 @@
+<app-bread-crumb page-title="Atendimentos" [items]="[{text: 'Atendimentos', icon: 'fa-edit'}]">
+</app-bread-crumb>
+
+<app-panel-container [isLoading]="loadingResources" button-link="new" panel-title="Lista de Atendimentos" button-text="Novo" button-icon="fa-plus">
+  <table class="table table-striped table-bordered table-hover table-responsive">
+    <thead class="thead-default">
+      <tr>
+        <th>Atendente</th>
+        <th>Data</th>
+        <th>Prazo</th>
+        <th>Situacao</th>
+        <th>Comunidade</th>
+        <th>Visitante</th>
+        <th class="text-center">Ações</th>
+      </tr>
+    </thead>
+
+    <tr *ngFor="let atendimento of resources">
+
+      <td>
+        <strong>{{atendimento.atendente}}</strong>
+      </td>
+      <td>
+        {{atendimento.data | date: 'dd/MM/yyyy'}}
+      </td>
+      <td>
+        {{atendimento.prazo | date: 'dd/MM/yyyy'}}
+      </td>
+      <td>
+        {{situacaoEnum[atendimento.situacao]}}
+      </td>
+      <td>
+        -
+      </td>
+      <td>
+        -
+      </td>
+
+      <td class="text-center">
+        <button title="Editar" [routerLink]="[atendimento.id, 'edit']" class="m-r-5 btn-acoes">
+          <i class="fa fa-pencil font-14"></i>
+        </button>
+        <button title="Excluir" (click)="deleteResource(atendimento)" class="m-r-5 btn-acoes">
+          <i class="fa fa-trash font-14"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+</app-panel-container>

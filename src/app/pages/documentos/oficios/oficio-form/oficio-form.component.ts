@@ -6,6 +6,8 @@ import { BaseResourceFormComponent } from 'src/app/shared/components/base-resour
 
 import { Oficio } from '../shared/oficio.model';
 import { OficioService } from '../shared/oficio.service';
+import { Mascaras} from '../../../../shared/directives/mascaras';
+
 
 @Component({
   selector: 'app-oficio-form',
@@ -16,20 +18,7 @@ export class OficioFormComponent extends BaseResourceFormComponent<Oficio> imple
 
   situacao = TipoSituacaoEnum;
 
-  ptBR = {
-    firstDayOfWeek: 0,
-    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-    dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
-    monthNames: [
-      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
-      'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-    ],
-    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-    today: 'Hoje',
-    clear: 'Limpar'
-  };
-
+  ptBR = Mascaras.calendarPtBr;
 
   constructor(protected oficioService: OficioService,
               protected injector: Injector) {

@@ -1,15 +1,21 @@
-<app-bread-crumb page-title="memorandos" [items]="[{text: 'memorandos', link: '/memorandos'} , {text: pageTitle}]">
+<app-bread-crumb page-title="proposituras" [items]="[{text: 'Proposituras', link: '/proposituras', icon: 'fa-book'} , {text: pageTitle}]">
 </app-bread-crumb>
 
-<app-panel-container [isLoading]="loadingResources" button-link="/memorandos" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
+<app-panel-container [isLoading]="loadingResources" button-link="/proposituras" [panel-title]="pageTitle" button-text="Voltar" button-icon="fa-arrow-left">
 
   <form [formGroup]="resourceForm" (submit)="submitForm()">
 
     <div class="row">
       <!-- destinatario -->
-      <div class="col-12">
-        <app-form-container for="assunto" label="Destinatario" [form-control]="resourceForm.get('destinatario')">
-          <input type="text" placeholder="Destinatario" class="form-control" id="destinatario" formControlName="destinatario">
+      <div class="col-8">
+        <app-form-container for="assunto" label="Assunto" [form-control]="resourceForm.get('assunto')">
+          <input type="text" placeholder="Assunto" class="form-control" id="assunto" formControlName="assunto">
+        </app-form-container>
+      </div>
+
+      <div class="col-4">
+        <app-form-container for="autoria" label="Autoria" [form-control]="resourceForm.get('autoria')">
+          <input type="text" placeholder="Autoria" class="form-control" id="auditoria" formControlName="autoria">
         </app-form-container>
       </div>
 
@@ -18,17 +24,23 @@
 
     <div class="row">
       <!-- destinatario -->
-      <div class="col-md-6">
-        <app-form-container for="numero" label="Número" [form-control]="resourceForm.get('numero')">
-          <input type="text" placeholder="Número" class="form-control" id="numero" formControlName="numero">
+      <div class="col-md-4">
+        <app-form-container for="protocolo" label="Protocolo " [form-control]="resourceForm.get('protocolo')">
+          <input type="text" placeholder="Protocolo " class="form-control" id="protocolo" formControlName="protocolo">
         </app-form-container>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-4">
         <app-form-container for="situacao" label="Situação" [form-control]="resourceForm.get('situacao')">
         <select class="form-control" name="situacao" id="situacao" formControlName="situacao" [compareWith]="selectEnumComparator">
            <option *ngFor="let item of situacao | keys" [ngValue]="item.key">{{item.value}}</option>
         </select>
+        </app-form-container>
+      </div>
+
+      <div class="col-md-4">
+        <app-form-container for="tipo" label="Tipo " [form-control]="resourceForm.get('tipo')">
+          <input type="text" placeholder="Tipo " class="form-control" id="tipo" formControlName="tipo">
         </app-form-container>
       </div>
     </div>
@@ -41,13 +53,39 @@
         </app-form-container>
       </div>
 
-    <div class="col-md-6">
-      <app-form-container for="categoria" label="Categoria" [form-control]="resourceForm.get('categoria')">
-      <select class="form-control" name="categoria" id="categoria" formControlName="categoria" [compareWith]="selectComparator">
-         <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{categoria.descricao}}</option>
-      </select>
-      </app-form-container>
+      <div class="col-md-6">
+        <app-form-container for="categoria" label="Categoria" [form-control]="resourceForm.get('categoria')">
+        <select class="form-control" name="categoria" id="categoria" formControlName="categoria" [compareWith]="selectComparator">
+          <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{categoria.descricao}}</option>
+        </select>
+        </app-form-container>
+      </div>
+
+
     </div>
+
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <app-form-container for="bairro" label="Bairro" [form-control]="resourceForm.get('bairro')">
+          <input type="text" placeholder="Bairro " class="form-control" id="bairro" formControlName="bairro">
+        </app-form-container>
+      </div>
+
+      <div class="col-md-6">
+        <app-form-container for="rua" label="Rua" [form-control]="resourceForm.get('rua')">
+          <input type="text" placeholder="Rua " class="form-control" id="rua" formControlName="rua">
+        </app-form-container>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <app-form-container for="resumo" label="Resumo" [form-control]="resourceForm.get('resumo')">
+          <textarea class="form-control" id="resumo" placeholder="Resumo" formControlName="resumo" rows="5"></textarea>
+        </app-form-container>
+      </div>
     </div>
 
   <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>

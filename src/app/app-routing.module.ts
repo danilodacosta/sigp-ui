@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
 
   /*CADASTROS*/
-  {path: 'produtos', loadChildren: './pages/cadastros/produtos/produtos.module#ProdutosModule'},
+  {path: 'atendimentos', loadChildren: './pages/cadastros/atendimentos/atendimentos.module#AtendimentosModule'},
   {path: 'categorias', loadChildren: './pages/cadastros/categorias/categorias.module#CategoriasModule'},
   {path: 'representantes', loadChildren: './pages/cadastros/representantes/representantes.module#RepresentantesModule'},
   {path: 'empresas', loadChildren: './pages/cadastros/empresas/empresas.module#EmpresasModule'},

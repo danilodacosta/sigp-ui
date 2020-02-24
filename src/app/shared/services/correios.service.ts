@@ -1,5 +1,5 @@
 import { API } from './../directives/api.app';
-import { EnderecoWeb } from './../dto/enderecoweb.model';
+import { EnderecoWeb } from '../models/dto/enderecoweb.model';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';

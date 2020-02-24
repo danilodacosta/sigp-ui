@@ -5,10 +5,15 @@ import { BaseResourceModel } from 'src/app/shared/models/base-resource.model';
 export class Propositura extends BaseResourceModel {
   constructor(
     public id?: any,
-    public destinatario?: string,
-    public numero?: number,
+    public assunto?: string,
+    public autoria?: string,
+    public bairro?: string,
+    public rua?: string,
+    public tipo?: string,
+    public protocolo?: string,
     public situacao?: TipoSituacaoEnum,
     public solicitante?: string,
+    public resumo?: string,
     public categoria?: Categoria,
 
   ) {
