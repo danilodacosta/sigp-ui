@@ -9,7 +9,6 @@ export class Atendimento extends BaseResourceModel {
     public id?: any,
     public atendente?: string,
     public data?: Date,
-    public flag?: boolean,
     public indicacao?: string,
     public prazo?: Date,
     public protocolo?: string,

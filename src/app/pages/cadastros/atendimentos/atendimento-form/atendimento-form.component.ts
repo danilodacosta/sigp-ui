@@ -1,8 +1,11 @@
-import { TipoPessoaEnum } from '../../../../shared/models/enums/tipo-pessoa.enum';
-import { SexoEnum } from '../../../../shared/models/enums/sexo.enum';
-import { EstadoEnum } from '../../../../shared/models/enums/estado.enum';
-import { CorreiosService } from '../../../../shared/services/correios.service';
-import { Component, Injector } from '@angular/core';
+import { Mascaras } from './../../../../shared/directives/mascaras';
+import { RepresentanteService } from './../../representantes/shared/representante.service';
+import { ComunidadeService } from './../../comunidades/shared/comunidade.service';
+import { CategoriaService } from './../../categorias/shared/categoria.service';
+import { Categoria } from './../../categorias/shared/categoria.model';
+import { Comunidade } from './../../comunidades/shared/comunidade.model';
+import { Representante } from './../../representantes/shared/representante.model';
+import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 
 import { BaseResourceFormComponent } from 'src/app/shared/components/base-resource-form/base-resource-form.component';
@@ -10,89 +13,92 @@ import { BaseResourceFormComponent } from 'src/app/shared/components/base-resour
 import { Atendimento } from '../shared/atendimento.model';
 import { AtendimentoService } from '../shared/atendimento.service';
 
-import toastr from 'toastr';
-
 @Component({
   selector: 'app-atendimento-form',
   templateUrl: './atendimento-form.component.html',
   styleUrls: ['./atendimento-form.component.scss']
 })
-export class AtendimentoFormComponent extends BaseResourceFormComponent<Atendimento> {
+export class AtendimentoFormComponent extends BaseResourceFormComponent<Atendimento> implements OnInit {
 
+  representantes: Array<Representante>;
+  comunidades: Array<Comunidade>;
+  categorias: Array<Categoria>;
 
-  isConsultandoCep = false;
-  estados = EstadoEnum;
-  sexoEnum = SexoEnum;
-  tipoPessoa = TipoPessoaEnum;
+  ptBR = Mascaras.calendarPtBr;
 
-  constructor(protected atendimentoService: AtendimentoService, protected injector: Injector, private correiosService: CorreiosService) {
+  constructor(protected atendimentoService: AtendimentoService,
+              protected injector: Injector,
+              private categoriaService: CategoriaService,
+              private comunidadeService: ComunidadeService,
+              private representanteService: RepresentanteService) {
     super(injector, new Atendimento(), atendimentoService, Atendimento.fromJson);
+  }
+
+  ngOnInit() {
+    this.loadRepresentantes();
+    this.loadComunidades();
+    this.loadCategorias();
+    super.ngOnInit();
   }
 
   protected buildResourceForm(): void {
      this.resourceForm = this.formBuilder.group({
       id : [null],
-      nome: [null, [Validators.required, Validators.maxLength(50)]],
-      cpf: [null, [Validators.required,  Validators.minLength(14), Validators.maxLength(14)]],
-      rg: [null, [Validators.required,   Validators.minLength(7), Validators.maxLength(7)]],
-      celular: [null, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
-      email: [null, [Validators.required, Validators.email]],
-      tipo: [null, [Validators.required]],
-      sexo: [null, [Validators.required]],
-      endereco: this.formBuilder.group(
-
-        {
-            logradouro : [null, [Validators.required, Validators.maxLength(50)]],
-            bairro: [null, [Validators.required, Validators.maxLength(20)]],
-            cep:    [null, [Validators.minLength(9), Validators.maxLength(9)]],
-            cidade: [null, [Validators.required, Validators.maxLength(20)]],
-            numero: [null, [Validators.maxLength(50)]],
-            complemento: [null, [Validators.maxLength(100)]],
-            estado: [null, [Validators.required]],
-        }
-    ),
+      atendente: [null, [Validators.required, Validators.maxLength(25)]],
+      data: [null, [Validators.required]],
+      indicacao: [null, [Validators.required, Validators.maxLength(30)]],
+      prazo: [null],
+      protocolo: [null, [Validators.required , Validators.maxLength(11)]],
+      situacao: [null, [Validators.required]],
+      solicitacao: [null, [Validators.required , Validators.maxLength(255)]],
+      categoria: [null, [Validators.required, Validators.email]],
+      comunidade: [null, [Validators.required]],
+      visitante: [null, [Validators.required]]
     });
 
   }
 
+  protected executaPreSetItem() {
 
-  public changeCep(value: any) {
-
-    if (value.length < 9) {
-       return;
+    if (this.resource.data) {
+       const newDate = new Date(this.resource.data);
+       newDate.setDate(newDate.getDate() + 1);
+       this.resource.data = newDate;
     }
 
-    value = value.replace('-', '');
+    if (this.resource.prazo) {
+      const newDate = new Date(this.resource.prazo);
+      newDate.setDate(newDate.getDate() + 1);
+      this.resource.prazo = newDate;
+   }
 
-    this.isConsultandoCep = true;
-
-    this.correiosService.buscarCep(value).subscribe(enderecoWeb => {
-
-      this.isConsultandoCep = false;
-
-      this.resourceForm.get('endereco.bairro').setValue(enderecoWeb.bairro);
-      this.resourceForm.get('endereco.cidade').setValue(enderecoWeb.localidade);
-      this.resourceForm.get('endereco.complemento').setValue(enderecoWeb.complemento);
-      this.resourceForm.get('endereco.logradouro').setValue(enderecoWeb.logradouro);
-      this.resourceForm.get('endereco.estado').setValue(enderecoWeb.uf);
-
-  },
-  error => {
-    this.isConsultandoCep = false;
-    if (error.error.message === 'mensagemErroCepNaoEncontrado') {
-        toastr.warning('CEP não encontrado !');
-    }
-  });
-
-  }
+ }
 
   protected creationPageTitle(): string {
     return 'Cadastro de Novo Atendimento';
   }
 
   protected editionPageTitle(): string {
-    const atendimentoDescricao: string  = this.resource.nome || '' ;
+    const atendimentoDescricao: string  = this.resource.protocolo || '' ;
     return 'Editando Atendimento : ' + atendimentoDescricao;
+  }
+
+  private loadCategorias() {
+    this.categoriaService.getAll().subscribe(
+      response => this.categorias = response
+    );
+  }
+
+  private loadComunidades() {
+    this.comunidadeService.getAll().subscribe(
+      response => this.comunidades = response
+    );
+  }
+
+  private loadRepresentantes() {
+    this.representanteService.getAll().subscribe(
+      response => this.representantes = response
+    );
   }
 
 }
