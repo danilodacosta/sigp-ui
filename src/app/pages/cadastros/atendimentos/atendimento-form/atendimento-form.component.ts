@@ -91,7 +91,7 @@ export class AtendimentoFormComponent extends BaseResourceFormComponent<Atendime
   }
 
   protected editionPageTitle(): string {
-    const atendimentoDescricao: string  = this.resource.nome || '' ;
+    const atendimentoDescricao: string  = this.resource.protocolo || '' ;
     return 'Editando Atendimento : ' + atendimentoDescricao;
   }
 
