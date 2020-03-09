@@ -44,6 +44,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   }
 
   submitForm() {
+    debugger;
     this.submittingForm = true;
     if (this.currentAction === 'new') {
        this.createResource(); // criando resource

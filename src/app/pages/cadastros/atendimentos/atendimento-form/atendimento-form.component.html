@@ -1,4 +1,4 @@
-<!--<app-bread-crumb page-title="atendimentos" [items]="[{text: 'Atendimentos', link: '/atendimentos', icon: 'fa-edit'} , {text: pageTitle}]">
+<app-bread-crumb page-title="atendimentos" [items]="[{text: 'Atendimentos', link: '/atendimentos', icon: 'fa-edit'} , {text: pageTitle}]">
 </app-bread-crumb>
 
 
@@ -8,42 +8,70 @@
 
     <div class="row">
 
-      <div class="col-12">
-        <app-form-container for="nome" label="Nome" [form-control]="resourceForm.get('nome')">
-          <input type="text" placeholder="Nome" class="form-control" id="nome" formControlName="nome">
+      <div class="col-4">
+        <app-form-container for="atendente" label="Atendente" [form-control]="resourceForm.get('atendente')">
+          <input type="text" placeholder="Atendente" class="form-control" id="atendente" formControlName="atendente">
         </app-form-container>
       </div>
+
+
+      <div class="col-4">
+        <app-form-container for="protocolo" label="Protocolo" [form-control]="resourceForm.get('protocolo')">
+          <input type="text" placeholder="Protocolo" class="form-control" id="protocolo" formControlName="protocolo">
+        </app-form-container>
+      </div>
+
+      <div class="col-md-4 ui-fluid">
+        <app-form-container for="data" label="Data" [form-control]="resourceForm.get('data')">
+           <p-calendar [dateFormat]="'dd/mm/yy'" id="data" formControlName="data" inputStyleClass="form-control" dataType="date" [locale]="ptBR" [showButtonBar]="true">
+           </p-calendar>
+         </app-form-container>
+       </div>
 
     </div>
 
     <div class="row">
 
-      <div class="col-6">
-        <app-form-container for="cpf" label="CPF" [form-control]="resourceForm.get('cpf')">
-          <input [imask]="{mask: '000.000.000-00'}" type="text" placeholder="CPF" class="form-control" id="cpf" formControlName="cpf">
+       <div class="col-md-4">
+        <app-form-container for="situacao" label="Situação" [form-control]="resourceForm.get('situacao')">
+        <select class="form-control" name="situacao" id="situacao" formControlName="situacao" [compareWith]="selectEnumComparator">
+           <option *ngFor="let item of situacao | keys" [ngValue]="item.key">{{item.value}}</option>
+        </select>
         </app-form-container>
       </div>
 
-      <div class="col-6">
-        <app-form-container for="rg" label="RG" [form-control]="resourceForm.get('rg')">
-          <input [imask]="{mask: '0000000'}" type="text" placeholder="RG" class="form-control" id="rg" formControlName="rg">
-        </app-form-container>
-      </div>
+
+     <div class="col-md-4">
+      <app-form-container for="categoria" label="Categoria" [form-control]="resourceForm.get('categoria')">
+      <select class="form-control" name="categoria" id="categoria" formControlName="categoria" [compareWith]="selectComparator">
+         <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{categoria.descricao}}</option>
+      </select>
+      </app-form-container>
+    </div>
+
+      <div class="col-md-4 ui-fluid">
+        <app-form-container for="prazo" label="Prazo" [form-control]="resourceForm.get('prazo')">
+           <p-calendar [dateFormat]="'dd/mm/yy'" id="prazo" formControlName="prazo" inputStyleClass="form-control" dataType="date" [locale]="ptBR" [showButtonBar]="true">
+           </p-calendar>
+         </app-form-container>
+       </div>
+
 
     </div>
 
 
     <div class="row">
 
-      <div class="col-6">
-        <app-form-container for="email" label="E-mail" [form-control]="resourceForm.get('email')">
-          <input type="email" placeholder="E-mail" class="form-control" id="email" formControlName="email">
+       <div class="col-6">
+        <app-form-container for="solicitacao" label="Solicitação" [form-control]="resourceForm.get('solicitacao')">
+          <input type="text" placeholder="Solicitação" class="form-control" id="atendsolicitacaoente" formControlName="solicitacao">
         </app-form-container>
       </div>
 
+
       <div class="col-6">
-        <app-form-container for="celular" label="Celular" [form-control]="resourceForm.get('celular')">
-          <input [imask]="{mask: '(00)00000-0000'}" type="text" placeholder="Telefone" class="form-control" id="celular" formControlName="celular">
+        <app-form-container for="indicacao" label="Indicação" [form-control]="resourceForm.get('indicacao')">
+          <input type="text" placeholder="Indicação" class="form-control" id="indicacao" formControlName="indicacao">
         </app-form-container>
       </div>
 
@@ -52,82 +80,22 @@
     <div class="row">
 
       <div class="col-md-6">
-        <app-form-container for="sexo" label="Sexo" [form-control]="resourceForm.get('sexo')">
-        <select class="form-control" name="sexo" id="sexo" formControlName="sexo" [compareWith]="selectEnumComparator">
-           <option *ngFor="let item of sexoEnum | keys" [ngValue]="item.key">{{item.value}}</option>
-        </select>
+        <app-form-container for="visitante" label="Visitante" [form-control]="resourceForm.get('visitante')">
+          <select class="form-control" name="visitante" id="representante" formControlName="visitante" [compareWith]="selectComparator">
+             <option *ngFor="let visitante of visitantes" [ngValue]="visitante">{{visitante.nome}}</option>
+          </select>
         </app-form-container>
       </div>
+
 
       <div class="col-md-6">
-        <app-form-container for="tipo" label="Tipo de Pessoa" [form-control]="resourceForm.get('tipo')">
-        <select class="form-control" name="tipo" id="tipo" formControlName="tipo" [compareWith]="selectEnumComparator">
-           <option *ngFor="let item of tipoPessoa | keys" [ngValue]="item.key">{{item.value}}</option>
-        </select>
+        <app-form-container for="comunidade" label="Comunidade" [form-control]="resourceForm.get('comunidade')">
+          <select class="form-control" name="comunidade" id="comunidade" formControlName="comunidade" [compareWith]="selectComparator">
+            <option *ngFor="let comunidade of comunidades" [ngValue]="comunidade">{{comunidade.nome}}</option>
+          </select>
         </app-form-container>
       </div>
 
-
-    </div>
-
-
-    <div class="row" formGroupName="endereco">
-      <p-panel class="col-12" header="Endereço">
-        <p-progressBar *ngIf="isConsultandoCep" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
-        <div class="row">
-          <div class="col-md-4">
-            <app-form-container for="cep" label="CEP" [form-control]="resourceForm.get('endereco.cep')">
-            <input [imask]="{mask: '00000-000'}" (change)="changeCep($event.target.value)" type="text" placeholder="CEP" class="form-control" id="cep" formControlName="cep">
-          </app-form-container>
-          </div>
-
-          <div class="col-md-8">
-            <app-form-container for="logradouro" label="Logradouro" [form-control]="resourceForm.get('endereco.logradouro')">
-            <input type="text" placeholder="Logradouro" class="form-control" id="logradouro" formControlName="logradouro">
-            </app-form-container>
-          </div>
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-md-4">
-            <app-form-container for="numero" label="Número" [form-control]="resourceForm.get('endereco.numero')">
-            <input type="text" placeholder="Número" class="form-control" id="numero" formControlName="numero">
-          </app-form-container>
-          </div>
-
-          <div class="col-md-8">
-            <app-form-container for="complemento" label="Complemento" [form-control]="resourceForm.get('endereco.complemento')">
-            <input type="text" placeholder="Complemento" class="form-control" id="complemento" formControlName="complemento">
-            </app-form-container>
-          </div>
-
-        </div>
-
-        <div class="row">
-
-          <div class="col-md-4">
-            <app-form-container for="bairro" label="Bairro" [form-control]="resourceForm.get('endereco.bairro')">
-            <input type="text" placeholder="Bairro" class="form-control" id="bairro" formControlName="bairro">
-            </app-form-container>
-          </div>
-
-          <div class="col-md-4">
-            <app-form-container for="cidade" label="Cidade" [form-control]="resourceForm.get('endereco.cidade')">
-            <input type="text" placeholder="Cidade" class="form-control" id="cidade" formControlName="cidade">
-          </app-form-container>
-          </div>
-
-          <div class="col-md-4">
-            <app-form-container for="estado" label="Estado" [form-control]="resourceForm.get('endereco.estado')">
-              <select class="form-control" name="estado" id="estado" formControlName="estado" [compareWith]="selectEnumComparator">
-                <option *ngFor="let item of estados | keys" [ngValue]="item.key">{{item.value}}</option>
-             </select>
-            </app-form-container>
-          </div>
-        </div>
-      </p-panel>
     </div>
 
   <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
@@ -140,4 +108,4 @@
     </div>
   </form>
 
-</app-panel-container>-->
+</app-panel-container>

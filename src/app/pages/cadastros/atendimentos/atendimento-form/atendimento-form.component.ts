@@ -1,13 +1,13 @@
+import { VisitanteService } from './../../visitantes/shared/visitante.service';
 import { Mascaras } from './../../../../shared/directives/mascaras';
-import { RepresentanteService } from './../../representantes/shared/representante.service';
 import { ComunidadeService } from './../../comunidades/shared/comunidade.service';
 import { CategoriaService } from './../../categorias/shared/categoria.service';
 import { Categoria } from './../../categorias/shared/categoria.model';
 import { Comunidade } from './../../comunidades/shared/comunidade.model';
-import { Representante } from './../../representantes/shared/representante.model';
+import { Visitante } from './../../visitantes/shared/visitante.model';
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
-
+import { TipoSituacaoEnum } from '../../../../shared/models/enums/tipo-situacao.enum';
 import { BaseResourceFormComponent } from 'src/app/shared/components/base-resource-form/base-resource-form.component';
 
 import { Atendimento } from '../shared/atendimento.model';
@@ -20,22 +20,22 @@ import { AtendimentoService } from '../shared/atendimento.service';
 })
 export class AtendimentoFormComponent extends BaseResourceFormComponent<Atendimento> implements OnInit {
 
-  representantes: Array<Representante>;
+  visitantes: Array<Visitante>;
   comunidades: Array<Comunidade>;
   categorias: Array<Categoria>;
-
+  situacao = TipoSituacaoEnum;
   ptBR = Mascaras.calendarPtBr;
 
   constructor(protected atendimentoService: AtendimentoService,
               protected injector: Injector,
               private categoriaService: CategoriaService,
               private comunidadeService: ComunidadeService,
-              private representanteService: RepresentanteService) {
+              private visitanteService: VisitanteService) {
     super(injector, new Atendimento(), atendimentoService, Atendimento.fromJson);
   }
 
   ngOnInit() {
-    this.loadRepresentantes();
+    this.loadvisitantes();
     this.loadComunidades();
     this.loadCategorias();
     super.ngOnInit();
@@ -51,7 +51,7 @@ export class AtendimentoFormComponent extends BaseResourceFormComponent<Atendime
       protocolo: [null, [Validators.required , Validators.maxLength(11)]],
       situacao: [null, [Validators.required]],
       solicitacao: [null, [Validators.required , Validators.maxLength(255)]],
-      categoria: [null, [Validators.required, Validators.email]],
+      categoria: [null, [Validators.required]],
       comunidade: [null, [Validators.required]],
       visitante: [null, [Validators.required]]
     });
@@ -95,11 +95,12 @@ export class AtendimentoFormComponent extends BaseResourceFormComponent<Atendime
     );
   }
 
-  private loadRepresentantes() {
-    this.representanteService.getAll().subscribe(
-      response => this.representantes = response
+  private loadvisitantes() {
+    this.visitanteService.getAll().subscribe(
+      response => this.visitantes = response
     );
   }
+
 
 }
 
