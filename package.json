@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "~8.2.3",
     "@angular/router": "~8.2.3",
     "angular-imask": "^5.1.6",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "primeicons": "^2.0.0",
     "primeng": "^9.0.0-rc.4",
     "rxjs": "~6.4.0",
